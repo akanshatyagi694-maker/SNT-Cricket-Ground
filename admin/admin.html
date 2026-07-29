@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SNT Admin Panel</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+    <!-- Login Section -->
+
+    <div id="loginBox">
+
+        <h1>SNT Admin Login</h1>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
+
+        <button id="loginBtn">
+            Login
+        </button>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+    <!-- Dashboard -->
+
+    <div id="dashboard" style="display:none;">
+
+        <h1>SNT Cricket Ground Admin Panel</h1>
+
+        <button id="logoutBtn">
+            Logout
+        </button>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2 id="totalBookings">
+                    0
+                </h2>
+
+                <p>Total Bookings</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="pendingBookings">
+                    0
+                </h2>
+
+                <p>Pending</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2 id="confirmedBookings">
+                    0
+                </h2>
+
+                <p>Confirmed</p>
+
+            </div>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Date</th>
+                    <th>Slot</th>
+                    <th>Status</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="bookingTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
