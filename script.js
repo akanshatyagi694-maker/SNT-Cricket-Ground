@@ -52,7 +52,7 @@ dateInput.addEventListener("change", async () => {
     const date = dateInput.value;
 
     const response = await fetch(
-        `http://127.0.0.1:5000/api/bookings/slots/${date}`
+        `https://snt-cricket-ground-production.up.railway.app/api/bookings/slots/${date}`
     );
 
     const data = await response.json();
@@ -85,7 +85,7 @@ dateInput.addEventListener("change", async () => {
     const date = dateInput.value;
 
     const response = await fetch(
-        `http://127.0.0.1:5000/api/bookings/slots/${date}`
+        `https://snt-cricket-ground-production.up.railway.app/api/bookings/slots/${date}`
     );
 
     const data = await response.json();

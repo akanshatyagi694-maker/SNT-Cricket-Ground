@@ -25,7 +25,7 @@ const confirmedBookings = document.getElementById("confirmedBookings");
 loginBtn.addEventListener("click", async () => {
 
     const response = await fetch(
-        "http://127.0.0.1:5000/api/admin/login",
+        "https://snt-cricket-ground-production.up.railway.app/api/admin/login",
         {
             method: "POST",
             headers: {
@@ -81,7 +81,7 @@ async function loadBookings() {
     bookingTable.innerHTML = "";
 
     const response = await fetch(
-        "http://127.0.0.1:5000/api/bookings"
+        "https://snt-cricket-ground-production.up.railway.appapi/bookings"
     );
 
     const bookings = await response.json();
@@ -168,7 +168,7 @@ Delete
 async function confirmBooking(id, name, phone, date, slot) {
 
     const response = await fetch(
-        `http://127.0.0.1:5000/api/bookings/${id}`,
+        `https://snt-cricket-ground-production.up.railway.app/api/bookings/${id}`,
         {
             method: "PUT"
         }
@@ -222,7 +222,7 @@ async function deleteBooking(id) {
     if (!confirm("Delete this booking?")) return;
 
     await fetch(
-        `http://127.0.0.1:5000/api/bookings/${id}`,
+        `https://snt-cricket-ground-production.up.railway.app/api/bookings/${id}`,
         {
             method: "DELETE"
         }
