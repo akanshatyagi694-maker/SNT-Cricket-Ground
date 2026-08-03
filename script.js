@@ -33,149 +33,195 @@ if (images.length && lightbox && lightboxImg) {
 // Booking Form
 // ==========================
 
+// ==========================
+// Booking Form
+// ==========================
+
 const bookingForm = document.getElementById("bookingForm");
 const dateInput = document.getElementById("date");
 const slotSelect = document.getElementById("slot");
 
-if (bookingForm) {
+const API_URL = "http://localhost:5000";
 
-    bookingForm.addEventListener("submit", async function (e) {
+// ==========================
+// Check Booked Slots
+// ==========================
 
-        e.preventDefault();
+if (dateInput && slotSelect) {
 
-        const name = document.getElementById("name").value;
-        const phone = document.getElementById("phone").value;
-        const date = document.getElementById("date").value;
-        const slot = document.getElementById("slot").value;
-dateInput.addEventListener("change", async () => {
+    dateInput.addEventListener("change", async () => {
 
-    const date = dateInput.value;
+        const selectedDate = dateInput.value;
 
-    const response = await fetch(
-        `https://snt-cricket-ground-production.up.railway.app/api/bookings/slots/${date}`
-    );
+        if (!selectedDate) return;
 
-    const data = await response.json();
-
-    // Enable all slots
-    Array.from(slotSelect.options).forEach(option => {
-        option.disabled = false;
-    });
-
-    // Disable booked slots
-    data.slots.forEach(slot => {
-
+        // Reset slots first
         Array.from(slotSelect.options).forEach(option => {
 
-            if (option.value === slot) {
+            option.disabled = false;
 
-                option.disabled = true;
-
-                option.text = slot + " (Booked)";
-
+            if (option.value) {
+                option.textContent = option.value;
             }
 
         });
 
-    });
-
-});
-dateInput.addEventListener("change", async () => {
-
-    const date = dateInput.value;
-
-    const response = await fetch(
-        `https://snt-cricket-ground-production.up.railway.app/api/bookings/slots/${date}`
-    );
-
-    const data = await response.json();
-
-    Array.from(slotSelect.options).forEach(option => {
-        option.disabled = false;
-    });
-
-    data.slots.forEach(slot => {
-
-        Array.from(slotSelect.options).forEach(option => {
-
-            if (option.value === slot) {
-
-                option.disabled = true;
-                option.text = slot + " (Booked)";
-
-            }
-
-        });
-
-    });
-
-});
         try {
 
-            const response = await fetch("https://snt-cricket-ground-production.up.railway.app", {
+            const response = await fetch(
+                `${API_URL}/api/bookings/slots/${selectedDate}`
+            );
 
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    name,
-                    phone,
-                    date,
-                    slot
-                })
-
-            });
+            if (!response.ok) {
+                throw new Error("Could not load slots");
+            }
 
             const data = await response.json();
 
-     if (!response.ok) {
+            const bookedSlots = data.slots || [];
 
-         alert(data.message);
+            bookedSlots.forEach(bookedSlot => {
 
-        return;
+                Array.from(slotSelect.options).forEach(option => {
 
-    }
+                    if (option.value === bookedSlot) {
 
-            if (data.success) {
+                        option.disabled = true;
 
-                alert("✅ Booking Saved Successfully!");
+                        option.textContent =
+                            `${bookedSlot} (Booked)`;
 
-                const message =
-`🏏 *SNT Cricket Ground Booking*
+                    }
 
-Name : ${name}
-Phone : ${phone}
-Date : ${date}
-Slot : ${slot}`;
+                });
 
-              window.location.href =
-    "https://wa.me/918010874325?text=" + encodeURIComponent(message);
-
-                bookingForm.reset();
-
-            } else {
-
-                if (!data.success) {
-
-    alert(data.message);
-
-    return;
-
-}
-
-            }
+            });
 
         } catch (error) {
 
-            console.error(error);
-
-            alert("❌ Server Connection Failed");
+            console.error(
+                "Slot loading error:",
+                error
+            );
 
         }
 
     });
+
+}
+
+
+// ==========================
+// Submit Booking
+// ==========================
+
+if (bookingForm) {
+
+    bookingForm.addEventListener(
+        "submit",
+        async function (e) {
+
+            e.preventDefault();
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const phone =
+                document.getElementById("phone").value.trim();
+
+            const date =
+                document.getElementById("date").value;
+
+            const slot =
+                document.getElementById("slot").value;
+
+
+            if (!name || !phone || !date || !slot) {
+
+                alert("Please fill all booking details.");
+
+                return;
+            }
+
+
+            try {
+
+                const response = await fetch(
+                    `${API_URL}/api/bookings`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name,
+                            phone,
+                            date,
+                            slot
+                        })
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (!response.ok || !data.success) {
+
+                    alert(
+                        data.message ||
+                        "Booking could not be completed."
+                    );
+
+                    return;
+                }
+
+
+                alert(
+                    "✅ Booking request submitted successfully!"
+                );
+
+
+                // WhatsApp message for SNT
+const message =
+`🏏 *SNT Cricket Ground Booking*
+
+Name : ${name}
+Contact No. : ${phone}
+Date : ${date}
+Slot : ${slot}`;
+
+
+                const whatsappURL =
+                    "https://wa.me/918010874325?text=" +
+                    encodeURIComponent(message);
+
+
+                window.open(
+                    whatsappURL,
+                    "_blank"
+                );
+
+
+                bookingForm.reset();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Booking error:",
+                    error
+                );
+
+                alert(
+                    "❌ Unable to connect to the booking server."
+                );
+
+            }
+
+        }
+    );
 
 }

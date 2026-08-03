@@ -732,3 +732,330 @@ select {
         grid-template-columns: 1fr;
     }
 }
+/* =====================================================
+   PREMIUM RESPONSIVE BOOKING SECTION
+===================================================== */
+
+.booking-section {
+    padding: 100px 6%;
+    background:
+        linear-gradient(rgba(5, 12, 9, 0.94), rgba(5, 12, 9, 0.97)),
+        url("images/ground1.png") center/cover no-repeat;
+}
+
+.booking-wrapper {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* LEFT SIDE */
+
+.booking-info span {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #00e676;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.booking-info h2 {
+    margin: 0 0 20px;
+    color: #ffffff;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.05;
+}
+
+.booking-info p {
+    max-width: 500px;
+    color: #b7c0bb;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* FORM CARD */
+
+.booking-form {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+}
+
+.booking-form .form-group {
+    margin-bottom: 20px;
+}
+
+.booking-form label {
+    display: block;
+    margin-bottom: 9px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.booking-form input,
+.booking-form select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 54px;
+    padding: 0 16px;
+
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+
+    font: inherit;
+    outline: none;
+    transition: 0.25s ease;
+}
+
+.booking-form input::placeholder {
+    color: #89938e;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+    border-color: #00e676;
+    background: rgba(255, 255, 255, 0.11);
+    box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.12);
+}
+
+.booking-form select option {
+    color: #111111;
+    background: #ffffff;
+}
+
+/* BOOK BUTTON */
+
+.booking-submit {
+    width: 100%;
+    min-height: 56px;
+    margin-top: 8px;
+
+    color: #06110b;
+    background: #00e676;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.booking-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 230, 118, 0.25);
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 900px) {
+
+    .booking-section {
+        padding: 75px 5%;
+    }
+
+    .booking-wrapper {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .booking-info {
+        text-align: center;
+    }
+
+    .booking-info p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ================= PHONE ================= */
+
+@media (max-width: 600px) {
+
+    .booking-section {
+        padding: 60px 18px;
+    }
+
+    .booking-wrapper {
+        gap: 28px;
+    }
+
+    .booking-info h2 {
+        font-size: 36px;
+    }
+
+    .booking-info p {
+        font-size: 15px;
+    }
+
+    .booking-form {
+        width: 100%;
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+
+    .booking-form input,
+    .booking-form select {
+        min-height: 52px;
+        font-size: 16px;
+    }
+
+    .booking-submit {
+        min-height: 54px;
+    }
+}
+/* ===== WHATSAPP & CALL BUTTONS ===== */
+
+.contact-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-actions a {
+    min-width: 170px;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: #ffffff;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+}
+
+.call-btn {
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.call-btn:hover {
+    background: #ffffff;
+    color: #111111;
+}
+
+@media (max-width: 600px) {
+    .contact-actions {
+        flex-direction: column;
+    }
+
+    .contact-actions a {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+/* ================= LOCATION ================= */
+
+.location-box {
+    width: min(1200px, 100%);
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    overflow: hidden;
+    background: #0d120f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+}
+
+.location-info {
+    padding: clamp(30px, 5vw, 60px);
+    color: white;
+}
+
+.location-info > span {
+    color: #78e864;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.location-info h3 {
+    margin: 12px 0 15px;
+    font-size: clamp(26px, 3vw, 40px);
+}
+
+.location-info p {
+    margin-bottom: 28px;
+    color: #aab3ad;
+}
+
+.directions-btn {
+    display: inline-flex;
+    padding: 13px 24px;
+    background: #78e864;
+    color: #071008;
+    border-radius: 50px;
+    font-weight: 700;
+}
+
+.map-container {
+    min-height: 390px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 390px;
+    border: 0;
+}
+
+@media (max-width: 750px) {
+    .location-box {
+        grid-template-columns: 1fr;
+    }
+
+    .map-container,
+    .map-container iframe {
+        min-height: 320px;
+    }
+}
+/* Instagram Button */
+
+.instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 26px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s ease;
+    background: linear-gradient(
+        45deg,
+        #f58529,
+        #dd2a7b,
+        #8134af
+    );
+    color: #ffffff;
+}
+
+.instagram-btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}

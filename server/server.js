@@ -22,14 +22,14 @@ console.log("Booking Routes:", bookingRoutes);
 
 app.use("/api/bookings", bookingRoutes);
 
-const PORT = process.env.PORT || 5000;
-const adminRoutes = require("./routes/adminRoutes");
 
+
+
+const PORT = process.env.PORT || 5000;
+
+const adminRoutes = require("./routes/adminRoutes");
 app.use("/api/admin", adminRoutes);
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-});
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
 });
